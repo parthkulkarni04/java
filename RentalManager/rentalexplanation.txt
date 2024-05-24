@@ -1,0 +1,52 @@
+13.	Develop a vehicle rental system where customers can rent different types of vehicles. Define an interface called Rentable with methods like rent(), returnVehicle(), and calculateRentalCost(). Implement this interface in classes representing different types of vehicles such as Car, Motorcycle, and Bicycle. Create a rental manager class to handle the renting and returning of vehicles.
+
+Sure! Let's walk through how the menu-driven vehicle rental system works:
+
+### 1. Initialization
+
+- The program starts by creating an instance of `RentalManager` and a `Scanner` object to read user input.
+- Three types of vehicles (Car, Motorcycle, and Bicycle) are created and added to the `RentalManager`.
+
+### 2. Displaying the Menu
+
+- The `displayMenu()` method is called to show the user the available options.
+- The user is prompted to choose an option from the menu.
+
+### 3. User Input and Processing
+
+- The program waits for the user to input a choice.
+- The user's choice is processed using a `switch` statement.
+
+### 4. Handling User Choices
+
+- **Renting a Vehicle** (Options 1-3):
+  - The program prompts the user to select the type of vehicle they want to rent (Car, Motorcycle, or Bicycle).
+  - If the chosen vehicle is available, it is rented, and the corresponding `rentVehicle()` method is called.
+  - The vehicle is removed from the list of available vehicles and added to the list of rented vehicles.
+
+- **Returning a Vehicle** (Option 4):
+  - The program prompts the user to select the type of vehicle they want to return (Car, Motorcycle, or Bicycle).
+  - If the chosen vehicle is currently rented, it is returned, and the corresponding `returnVehicle()` method is called.
+  - The vehicle is removed from the list of rented vehicles and added back to the list of available vehicles.
+
+- **Calculating Rental Cost** (Option 5):
+  - The program prompts the user to select the type of vehicle for which they want to calculate the rental cost (Car, Motorcycle, or Bicycle).
+  - The user is then asked to input the rental duration in hours.
+  - The program calculates the rental cost using the `calculateCost()` method and displays the result.
+
+- **Exiting the Program** (Option 6):
+  - If the user chooses to exit, the program sets the `exit` flag to `true`, and the loop terminates.
+
+### 5. Looping and Termination
+
+- The program loops back to displaying the menu until the user chooses to exit.
+- When the user selects the exit option, the loop terminates, and a "Goodbye" message is displayed.
+
+### Key Points
+
+- The program uses object-oriented principles to manage vehicles and rentals.
+- It provides a simple and intuitive menu-driven interface for users to interact with the system.
+- The program maintains separate lists for available and rented vehicles to track their status accurately.
+- User input is validated to ensure that only valid choices are accepted.
+
+Overall, the program offers a straightforward and efficient way for users to rent and return vehicles while also calculating rental costs as needed.

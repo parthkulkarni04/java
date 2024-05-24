@@ -1,0 +1,41 @@
+Build a flight reservation system that allows users to search for flights, book tickets, and cancel reservations. Implement exception handling to handle situations such as seat availability, invalid departure/arrival dates, or unexpected errors during booking confirmation.
+
+
+### 1. Classes:
+- **Flight:** Represents a flight with attributes like flight number, departure city, arrival city, total seats, and available seats. It has methods to book and cancel seats.
+  
+- **Reservation:** Represents a reservation with a reference to the booked flight and the passenger's name.
+
+- **FlightReservationSystem:** Manages flights and reservations. It provides methods to add flights, search for flights, book flights, and cancel reservations.
+
+### 2. Exceptions:
+- **NoAvailableSeatsException:** Custom exception thrown when attempting to book a seat on a flight with no available seats.
+  
+- **FlightNotFoundException:** Custom exception thrown when a flight is not found during booking or cancellation.
+  
+- **ReservationNotFoundException:** Custom exception thrown when a reservation is not found during cancellation.
+
+### 3. Main Class:
+- **Main:** Contains the main method where the program execution starts. It provides a menu-driven interface for users to interact with the flight reservation system.
+
+### 4. Menu-Driven Interface:
+- The `main` method contains a loop that repeatedly displays a menu and prompts the user for input until the user chooses to exit.
+  
+- Each menu option corresponds to a method call to perform a specific action like adding a flight, searching for flights, booking a flight, canceling a reservation, or exiting the program.
+
+### 5. Methods:
+- **addFlight:** Prompts the user to enter details of a new flight and adds it to the system.
+
+- **searchFlights:** Prompts the user to enter departure and arrival cities, then displays a list of available flights matching the criteria.
+
+- **bookFlight:** Prompts the user to enter a flight number and passenger name, then attempts to book a seat on the specified flight.
+
+- **cancelReservation:** Prompts the user to enter a flight number and passenger name, then attempts to cancel the reservation for the specified passenger on the specified flight.
+
+### 6. Exception Handling:
+- Exceptions are caught and appropriate error messages are displayed to the user if any unexpected situations occur during the execution of methods.
+
+### 7. Scanner:
+- Uses `Scanner` class to read user input from the console.
+
+Overall, this program provides a simple but functional flight reservation system with a user-friendly menu-driven interface, allowing users to perform various actions like adding flights, searching for flights, booking tickets, and canceling reservations.

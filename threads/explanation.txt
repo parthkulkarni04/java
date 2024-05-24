@@ -1,0 +1,68 @@
+Create a program that prints numbers from 1 to 10 using multiple threads. Each thread should print a subset of numbers sequentially. Ensure proper synchronization to maintain the order of numbers
+
+### Key Components:
+
+1. **Shared Variables and Lock**:
+    - `MAX_NUMBER`: The maximum number to print (set to 10).
+    - `currentNumber`: A static variable shared by all threads, initialized to 1.
+    - `lock`: A shared object used for synchronization.
+
+2. **Thread Creation and Naming**:
+    - Three threads are created in the main method, each assigned a distinct name ("Thread-1", "Thread-2", "Thread-3") for identification.
+    - Each thread executes the `NumberPrinter` runnable.
+
+3. **NumberPrinter Class**:
+    - Implements the `Runnable` interface.
+    - Contains a `run` method with logic for printing numbers sequentially.
+
+### How Each Thread Prints Numbers:
+
+1. **Thread Execution**:
+    - Each thread starts and enters the `run` method.
+    - The threads operate in a loop (`while (true)`), continuously checking if `currentNumber` exceeds `MAX_NUMBER`.
+
+2. **Synchronization with `synchronized` Block**:
+    - The `synchronized (lock)` block ensures that only one thread can execute the block at a time.
+    - This prevents race conditions and ensures that `currentNumber` is printed sequentially by one thread at a time.
+
+3. **Printing the Number**:
+    - Inside the synchronized block, each thread checks if `currentNumber` is less than or equal to `MAX_NUMBER`.
+    - If so, the thread prints the `currentNumber` along with its name (`Thread.currentThread().getName()`).
+    - The `currentNumber` is then incremented by 1.
+
+4. **Delay and Synchronization**:
+    - `Thread.sleep(1000)` introduces a 1-second delay between prints.
+    - `lock.notifyAll()` wakes up all threads waiting on the lock, allowing them to proceed.
+    - `lock.wait()` causes the current thread to wait until it is notified.
+
+5. **Thread Coordination**:
+    - After a thread prints a number and notifies others (`lock.notifyAll()`), it calls `lock.wait()` to release the lock and wait for its turn again.
+    - Another thread, now notified, acquires the lock and repeats the process.
+    - This cycle continues until `currentNumber` exceeds `MAX_NUMBER`.
+
+6. **Termination**:
+    - Once `currentNumber` exceeds `MAX_NUMBER`, the thread breaks out of the loop.
+    - `lock.notifyAll()` ensures any remaining waiting threads are awakened to complete their execution and exit.
+
+### Example Execution Flow:
+1. **Thread-1** starts and acquires the lock.
+   - Prints "Thread-1 printed 1".
+   - Increments `currentNumber` to 2.
+   - Sleeps for 1 second.
+   - Calls `lock.notifyAll()` and then `lock.wait()`.
+
+2. **Thread-2** (now notified) acquires the lock.
+   - Prints "Thread-2 printed 2".
+   - Increments `currentNumber` to 3.
+   - Sleeps for 1 second.
+   - Calls `lock.notifyAll()` and then `lock.wait()`.
+
+3. **Thread-3** (now notified) acquires the lock.
+   - Prints "Thread-3 printed 3".
+   - Increments `currentNumber` to 4.
+   - Sleeps for 1 second.
+   - Calls `lock.notifyAll()` and then `lock.wait()`.
+
+4. **The sequence continues** with threads taking turns printing numbers until `currentNumber` exceeds 10.
+
+This approach ensures that numbers are printed in the correct order by different threads, each waiting its turn and introducing a delay between prints to meet the requirements.
